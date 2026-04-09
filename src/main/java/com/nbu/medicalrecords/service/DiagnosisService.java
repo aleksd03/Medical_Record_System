@@ -5,7 +5,7 @@ import com.nbu.medicalrecords.data.entity.Diagnosis;
 import java.util.List;
 
 public interface DiagnosisService {
-    List<Diagnosis> getAllDiagnosis();
+    List<Diagnosis> getAllDiagnoses();
     Diagnosis getDiagnosisById(Long id);
     Diagnosis createDiagnosis(Diagnosis diagnosis);
     Diagnosis updateDiagnosis(Long id, Diagnosis diagnosis);
