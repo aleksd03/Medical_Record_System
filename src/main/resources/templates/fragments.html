@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<nav th:fragment="navbar">
+    <ul>
+        <li><a th:href="@{/doctors}">Лекари</a></li>
+        <li><a th:href="@{/patients}">Пациенти</a></li>
+        <li><a th:href="@{/diagnoses}">Диагнози</a></li>
+        <li><a th:href="@{/appointments}">Прегледи</a></li>
+        <li><a th:href="@{/sick-leaves}">Болнични</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Лекари</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Лекари</h1>
+
+<a th:href="@{/doctors/create}">Добави лекар</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Идентификационен номер</th>
+        <th>Име</th>
+        <th>Фамилия</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doctor : ${doctors}">
+        <td th:text="${doctor.id}"></td>
+        <td th:text="${doctor.identificationNumber}"></td>
+        <td th:text="${doctor.firstName}"></td>
+        <td th:text="${doctor.lastName}"></td>
+        <td>
+            <a th:href="@{/doctors/edit/{id}(id=${doctor.id})}">Редактирай</a>
+            <a th:href="@{/doctors/delete/{id}(id=${doctor.id})}">Изтрий</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
