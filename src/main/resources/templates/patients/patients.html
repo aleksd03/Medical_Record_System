@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Пациенти</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Пациенти</h1>
+
+<a th:href="@{/patients/create}">Добави пациент</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ЕГН</th>
+        <th>Име</th>
+        <th>Фамилия</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.egn}"></td>
+        <td th:text="${patient.firstName}"></td>
+        <td th:text="${patient.lastName}"></td>
+        <td>
+            <a th:href="@{/patients/edit/{id}(id=${patient.id})}">Редактирай</a>
+            <a th:href="@{/patients/delete/{id}(id=${patient.id})}">Изтрий</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

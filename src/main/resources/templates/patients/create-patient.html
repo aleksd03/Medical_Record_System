@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добави пациент</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Добави пациент</h1>
+
+<form th:action="@{/patients/create}" th:object="${patient}" method="post">
+    <div>
+        <label>ЕГН:</label>
+        <input type="text" th:field="*{egn}"/>
+    </div>
+    <div>
+        <label>Име:</label>
+        <input type="text" th:field="*{firstName}"/>
+    </div>
+    <div>
+        <label>Фамилия:</label>
+        <input type="text" th:field="*{lastName}"/>
+    </div>
+    <button type="submit">Запази</button>
+    <a th:href="@{/patients}">Назад</a>
+</form>
+
+</body>
+</html>

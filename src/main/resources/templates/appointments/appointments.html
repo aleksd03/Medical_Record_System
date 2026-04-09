@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Прегледи</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Прегледи</h1>
+
+<a th:href="@{/appointments/create}">Добави преглед</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Дата</th>
+        <th>Лекар</th>
+        <th>Пациент</th>
+        <th>Диагноза</th>
+        <th>Лечение</th>
+        <th>Цена</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appointment : ${appointments}">
+        <td th:text="${appointment.id}"></td>
+        <td th:text="${appointment.date}"></td>
+        <td th:text="${appointment.doctor.firstName + ' ' + appointment.doctor.lastName}"></td>
+        <td th:text="${appointment.patient.firstName + ' ' + appointment.patient.lastName}"></td>
+        <td th:text="${appointment.diagnosis.name}"></td>
+        <td th:text="${appointment.treatment}"></td>
+        <td th:text="${appointment.price}"></td>
+        <td>
+            <a th:href="@{/appointments/edit/{id}(id=${appointment.id})}">Редактирай</a>
+            <a th:href="@{/appointments/delete/{id}(id=${appointment.id})}">Изтрий</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Болнични листове</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Болнични листове</h1>
+
+<a th:href="@{/sick-leaves/create}">Добави болничен лист</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Начална дата</th>
+        <th>Брой дни</th>
+        <th>Преглед</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sickLeave : ${sickLeaves}">
+        <td th:text="${sickLeave.id}"></td>
+        <td th:text="${sickLeave.startDate}"></td>
+        <td th:text="${sickLeave.numberOfDays}"></td>
+        <td th:text="${sickLeave.appointment.id}"></td>
+        <td>
+            <a th:href="@{/sick-leaves/edit/{id}(id=${sickLeave.id})}">Редактирай</a>
+            <a th:href="@{/sick-leaves/delete/{id}(id=${sickLeave.id})}">Изтрий</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

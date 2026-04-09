@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирай преглед</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Редактирай преглед</h1>
+
+<form th:action="@{/appointments/edit/{id}(id=${appointmentId})}" th:object="${appointment}" method="post">
+    <div>
+        <label>Дата:</label>
+        <input type="date" th:field="*{date}"/>
+    </div>
+    <div>
+        <label>Лекар:</label>
+        <select th:field="*{doctorId}">
+            <option th:each="doctor : ${doctors}"
+                    th:value="${doctor.id}"
+                    th:text="${doctor.firstName + ' ' + doctor.lastName}">
+            </option>
+        </select>
+    </div>
+    <div>
+        <label>Пациент:</label>
+        <select th:field="*{patientId}">
+            <option th:each="patient : ${patients}"
+                    th:value="${patient.id}"
+                    th:text="${patient.firstName + ' ' + patient.lastName}">
+            </option>
+        </select>
+    </div>
+    <div>
+        <label>Диагноза:</label>
+        <select th:field="*{diagnosisId}">
+            <option th:each="diagnosis : ${diagnoses}"
+                    th:value="${diagnosis.id}"
+                    th:text="${diagnosis.name}">
+            </option>
+        </select>
+    </div>
+    <div>
+        <label>Лечение:</label>
+        <input type="text" th:field="*{treatment}"/>
+    </div>
+    <div>
+        <label>Цена:</label>
+        <input type="number" step="0.01" th:field="*{price}"/>
+    </div>
+    <button type="submit">Запази</button>
+    <a th:href="@{/appointments}">Назад</a>
+</form>
+
+</body>
+</html>

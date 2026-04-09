@@ -14,13 +14,13 @@ import java.util.List;
 @RequestMapping("/doctors")
 @RequiredArgsConstructor
 public class DoctorViewController {
-
     private final DoctorService doctorService;
     private final ModelMapperConfig modelMapperConfig;
 
     @GetMapping
     public String getAllDoctors(Model model) {
-        List<DoctorDto> doctors = modelMapperConfig.mapList(doctorService.getAllDoctors(), DoctorDto.class);
+        List<DoctorDto> doctors = modelMapperConfig
+                .mapList(doctorService.getAllDoctors(), DoctorDto.class);
         model.addAttribute("doctors", doctors);
         return "doctors/doctors";
     }
@@ -33,8 +33,8 @@ public class DoctorViewController {
 
     @PostMapping("/create")
     public String createDoctor(@ModelAttribute DoctorDto doctorDto) {
-        doctorService.createDoctor(
-                modelMapperConfig.modelMapper().map(doctorDto, com.nbu.medicalrecords.data.entity.Doctor.class));
+        doctorService.createDoctor(modelMapperConfig.modelMapper()
+                .map(doctorDto, com.nbu.medicalrecords.data.entity.Doctor.class));
         return "redirect:/doctors";
     }
 
@@ -47,8 +47,8 @@ public class DoctorViewController {
 
     @PostMapping("/edit/{id}")
     public String updateDoctor(@PathVariable Long id, @ModelAttribute DoctorDto doctorDto) {
-        doctorService.updateDoctor(id,
-                modelMapperConfig.modelMapper().map(doctorDto, com.nbu.medicalrecords.data.entity.Doctor.class));
+        doctorService.updateDoctor(id, modelMapperConfig.modelMapper()
+                .map(doctorDto, com.nbu.medicalrecords.data.entity.Doctor.class));
         return "redirect:/doctors";
     }
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добави диагноза</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Добави диагноза</h1>
+
+<form th:action="@{/diagnoses/create}" th:object="${diagnosis}" method="post">
+    <div>
+        <label>Име:</label>
+        <input type="text" th:field="*{name}"/>
+    </div>
+    <div>
+        <label>Описание:</label>
+        <input type="text" th:field="*{description}"/>
+    </div>
+    <button type="submit">Запази</button>
+    <a th:href="@{/diagnoses}">Назад</a>
+</form>
+
+</body>
+</html>

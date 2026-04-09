@@ -34,7 +34,7 @@ public class PatientServiceImpl implements PatientService {
         existing.setFirstName(patient.getFirstName());
         existing.setLastName(patient.getLastName());
         existing.setEgn(patient.getEgn());
-        return patientRepository.save(patient);
+        return patientRepository.save(existing);
     }
 
     @Override

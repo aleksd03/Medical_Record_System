@@ -33,7 +33,7 @@ public class DiagnosisServiceImpl implements DiagnosisService {
         Diagnosis existing = getDiagnosisById(id);
         existing.setName(diagnosis.getName());
         existing.setDescription(diagnosis.getDescription());
-        return diagnosisRepository.save(diagnosis);
+        return diagnosisRepository.save(existing);
     }
 
     @Override
