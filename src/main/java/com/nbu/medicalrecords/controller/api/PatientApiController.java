@@ -1,8 +1,10 @@
 package com.nbu.medicalrecords.controller.api;
 
 import com.nbu.medicalrecords.config.ModelMapperConfig;
+import com.nbu.medicalrecords.data.entity.Patient;
 import com.nbu.medicalrecords.dto.CreatePatientDto;
 import com.nbu.medicalrecords.dto.PatientDto;
+import com.nbu.medicalrecords.service.DoctorService;
 import com.nbu.medicalrecords.service.PatientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PatientApiController {
     private final PatientService patientService;
+    private final DoctorService doctorService;
     private final ModelMapperConfig modelMapperConfig;
 
     @GetMapping
@@ -29,18 +32,24 @@ public class PatientApiController {
 
     @PostMapping
     public PatientDto createPatient(@Valid @RequestBody CreatePatientDto createPatientDto) {
-        return modelMapperConfig.modelMapper().map(
-                patientService.createPatient(modelMapperConfig.modelMapper()
-                        .map(createPatientDto, com.nbu.medicalrecords.data.entity.Patient.class)),
-                PatientDto.class);
+        Patient patient = new Patient();
+        patient.setFirstName(createPatientDto.getFirstName());
+        patient.setLastName(createPatientDto.getLastName());
+        patient.setEgn(createPatientDto.getEgn());
+        patient.setHealthInsured(createPatientDto.isHealthInsured());
+        patient.setGeneralPractitioner(doctorService.getDoctorById(createPatientDto.getGeneralPractitionerId()));
+        return modelMapperConfig.modelMapper().map(patientService.createPatient(patient), PatientDto.class);
     }
 
     @PutMapping("/{id}")
-    public PatientDto updatePatient(@PathVariable Long id, @Valid @RequestBody PatientDto patientDto) {
-        return modelMapperConfig.modelMapper().map(
-                patientService.updatePatient(id, modelMapperConfig.modelMapper()
-                        .map(patientDto, com.nbu.medicalrecords.data.entity.Patient.class)),
-                PatientDto.class);
+    public PatientDto updatePatient(@PathVariable Long id, @Valid @RequestBody CreatePatientDto createPatientDto) {
+        Patient patient = new Patient();
+        patient.setFirstName(createPatientDto.getFirstName());
+        patient.setLastName(createPatientDto.getLastName());
+        patient.setEgn(createPatientDto.getEgn());
+        patient.setHealthInsured(createPatientDto.isHealthInsured());
+        patient.setGeneralPractitioner(doctorService.getDoctorById(createPatientDto.getGeneralPractitionerId()));
+        return modelMapperConfig.modelMapper().map(patientService.updatePatient(id, patient), PatientDto.class);
     }
 
     @DeleteMapping("/{id}")

@@ -18,4 +18,10 @@ public class CreateDoctorDto {
     @NotBlank(message = "Фамилията е задължителна")
     @Size(min = 2, max = 20, message = "Фамилията трябва да е между 2 и 50 символа")
     private String lastName;
+
+    @NotBlank(message = "Специалността е задължителна")
+    @Size(min = 2, max = 20, message = "Специалността трябва да е между 2 и 20 символа")
+    private String specialty;
+
+    private boolean gp;
 }

@@ -1,6 +1,7 @@
 package com.nbu.medicalrecords.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -20,4 +21,9 @@ public class CreatePatientDto {
     @NotBlank(message = "ЕГН-то е задължително")
     @Pattern(regexp = "\\d{10}", message = "ЕГН-то трябва да съдържа точно 10 цифри")
     private String egn;
+
+    private boolean healthInsured;
+
+    @NotNull(message = "Личният лекар е задължителен")
+    private Long generalPractitionerId;
 }

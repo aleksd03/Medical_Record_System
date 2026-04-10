@@ -35,6 +35,8 @@ public class PatientServiceImpl implements PatientService {
         existing.setFirstName(patient.getFirstName());
         existing.setLastName(patient.getLastName());
         existing.setEgn(patient.getEgn());
+        existing.setHealthInsured(patient.isHealthInsured());
+        existing.setGeneralPractitioner(patient.getGeneralPractitioner());
         return patientRepository.save(existing);
     }
 

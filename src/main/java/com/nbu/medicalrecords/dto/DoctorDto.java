@@ -10,4 +10,6 @@ public class DoctorDto {
     private String identificationNumber;
     private String firstName;
     private String lastName;
+    private String specialty;
+    private boolean gp;
 }

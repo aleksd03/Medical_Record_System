@@ -35,6 +35,8 @@ public class DoctorServiceImpl implements DoctorService {
         existing.setFirstName(doctor.getFirstName());
         existing.setLastName(doctor.getLastName());
         existing.setIdentificationNumber(doctor.getIdentificationNumber());
+        existing.setSpecialty(doctor.getSpecialty());
+        existing.setGp(doctor.isGp());
         return doctorRepository.save(existing);
     }
 

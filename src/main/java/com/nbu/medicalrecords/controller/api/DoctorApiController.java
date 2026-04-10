@@ -1,6 +1,7 @@
 package com.nbu.medicalrecords.controller.api;
 
 import com.nbu.medicalrecords.config.ModelMapperConfig;
+import com.nbu.medicalrecords.data.entity.Doctor;
 import com.nbu.medicalrecords.dto.CreateDoctorDto;
 import com.nbu.medicalrecords.dto.DoctorDto;
 import com.nbu.medicalrecords.service.DoctorService;
@@ -30,16 +31,16 @@ public class DoctorApiController {
     @PostMapping
     public DoctorDto createDoctor(@Valid @RequestBody CreateDoctorDto createDoctorDto) {
         return modelMapperConfig.modelMapper().map(
-                doctorService.createDoctor(modelMapperConfig.modelMapper()
-                        .map(createDoctorDto, com.nbu.medicalrecords.data.entity.Doctor.class)),
+                doctorService.createDoctor(
+                        modelMapperConfig.modelMapper().map(createDoctorDto, Doctor.class)),
                 DoctorDto.class);
     }
 
     @PutMapping("/{id}")
-    public DoctorDto updateDoctor(@PathVariable Long id, @Valid @RequestBody DoctorDto doctorDto) {
+    public DoctorDto updateDoctor(@PathVariable Long id, @Valid @RequestBody CreateDoctorDto createDoctorDto) {
         return modelMapperConfig.modelMapper().map(
-                doctorService.updateDoctor(id, modelMapperConfig.modelMapper()
-                        .map(doctorDto, com.nbu.medicalrecords.data.entity.Doctor.class)),
+                doctorService.updateDoctor(id,
+                        modelMapperConfig.modelMapper().map(createDoctorDto, Doctor.class)),
                 DoctorDto.class);
     }
 

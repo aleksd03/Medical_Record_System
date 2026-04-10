@@ -19,4 +19,10 @@ public class Doctor extends BaseEntity {
 
     @Column(nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
+    private String specialty;
+
+    @Column(nullable = false)
+    private boolean gp;
 }
