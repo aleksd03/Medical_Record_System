@@ -2,6 +2,7 @@ package com.nbu.medicalrecords.service.impl;
 
 import com.nbu.medicalrecords.data.entity.Doctor;
 import com.nbu.medicalrecords.data.repository.DoctorRepository;
+import com.nbu.medicalrecords.exception.DoctorNotFoundException;
 import com.nbu.medicalrecords.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor getDoctorById(Long id) {
-        return doctorRepository.findById(id).orElseThrow(() -> new RuntimeException("Doctor not found"));
+        return doctorRepository.findById(id).orElseThrow(() -> new DoctorNotFoundException(id));
     }
 
     @Override

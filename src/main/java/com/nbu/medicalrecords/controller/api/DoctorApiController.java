@@ -4,6 +4,7 @@ import com.nbu.medicalrecords.config.ModelMapperConfig;
 import com.nbu.medicalrecords.dto.CreateDoctorDto;
 import com.nbu.medicalrecords.dto.DoctorDto;
 import com.nbu.medicalrecords.service.DoctorService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class DoctorApiController {
     }
 
     @PostMapping
-    public DoctorDto createDoctor(@RequestBody CreateDoctorDto createDoctorDto) {
+    public DoctorDto createDoctor(@Valid @RequestBody CreateDoctorDto createDoctorDto) {
         return modelMapperConfig.modelMapper().map(
                 doctorService.createDoctor(modelMapperConfig.modelMapper()
                         .map(createDoctorDto, com.nbu.medicalrecords.data.entity.Doctor.class)),
@@ -35,7 +36,7 @@ public class DoctorApiController {
     }
 
     @PutMapping("/{id}")
-    public DoctorDto updateDoctor(@PathVariable Long id, @RequestBody DoctorDto doctorDto) {
+    public DoctorDto updateDoctor(@PathVariable Long id, @Valid @RequestBody DoctorDto doctorDto) {
         return modelMapperConfig.modelMapper().map(
                 doctorService.updateDoctor(id, modelMapperConfig.modelMapper()
                         .map(doctorDto, com.nbu.medicalrecords.data.entity.Doctor.class)),

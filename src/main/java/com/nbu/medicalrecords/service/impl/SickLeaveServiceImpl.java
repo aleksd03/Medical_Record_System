@@ -2,6 +2,7 @@ package com.nbu.medicalrecords.service.impl;
 
 import com.nbu.medicalrecords.data.entity.SickLeave;
 import com.nbu.medicalrecords.data.repository.SickLeaveRepository;
+import com.nbu.medicalrecords.exception.SickLeaveNotFoundException;
 import com.nbu.medicalrecords.service.SickLeaveService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class SickLeaveServiceImpl implements SickLeaveService {
 
     @Override
     public SickLeave getSickLeaveById(Long id) {
-        return sickLeaveRepository.findById(id).orElseThrow(() -> new RuntimeException("Sick leave not found"));
+        return sickLeaveRepository.findById(id).orElseThrow(() -> new SickLeaveNotFoundException(id));
     }
 
     @Override

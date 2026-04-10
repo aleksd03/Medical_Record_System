@@ -8,6 +8,7 @@ import com.nbu.medicalrecords.service.DoctorService;
 import com.nbu.medicalrecords.service.PatientService;
 import com.nbu.medicalrecords.service.DiagnosisService;
 import com.nbu.medicalrecords.data.entity.Appointment;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class AppointmentApiController {
     }
 
     @PostMapping
-    public AppointmentDto createAppointment(@RequestBody CreateAppointmentDto createAppointmentDto) {
+    public AppointmentDto createAppointment(@Valid @RequestBody CreateAppointmentDto createAppointmentDto) {
         Appointment appointment = new Appointment();
         appointment.setDate(createAppointmentDto.getDate());
         appointment.setTreatment(createAppointmentDto.getTreatment());
@@ -49,7 +50,7 @@ public class AppointmentApiController {
     }
 
     @PutMapping("/{id}")
-    public AppointmentDto updateAppointment(@PathVariable Long id, @RequestBody CreateAppointmentDto dto) {
+    public AppointmentDto updateAppointment(@PathVariable Long id, @Valid @RequestBody CreateAppointmentDto dto) {
         Appointment appointment = appointmentService.getAppointmentById(id);
         appointment.setDate(dto.getDate());
         appointment.setTreatment(dto.getTreatment());

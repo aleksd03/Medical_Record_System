@@ -6,6 +6,7 @@ import com.nbu.medicalrecords.dto.SickLeaveDto;
 import com.nbu.medicalrecords.service.AppointmentService;
 import com.nbu.medicalrecords.service.SickLeaveService;
 import com.nbu.medicalrecords.data.entity.SickLeave;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class SickLeaveApiController {
     }
 
     @PostMapping
-    public SickLeaveDto createSickLeave(@RequestBody CreateSickLeaveDto createSickLeaveDto) {
+    public SickLeaveDto createSickLeave(@Valid @RequestBody CreateSickLeaveDto createSickLeaveDto) {
         SickLeave sickLeave = new SickLeave();
         sickLeave.setStartDate(createSickLeaveDto.getStartDate());
         sickLeave.setNumberOfDays(createSickLeaveDto.getNumberOfDays());
@@ -42,7 +43,7 @@ public class SickLeaveApiController {
     }
 
     @PutMapping("/{id}")
-    public SickLeaveDto updateSickLeave(@PathVariable Long id, @RequestBody CreateSickLeaveDto dto) {
+    public SickLeaveDto updateSickLeave(@PathVariable Long id, @Valid @RequestBody CreateSickLeaveDto dto) {
         SickLeave sickLeave = sickLeaveService.getSickLeaveById(id);
         sickLeave.setStartDate(dto.getStartDate());
         sickLeave.setNumberOfDays(dto.getNumberOfDays());

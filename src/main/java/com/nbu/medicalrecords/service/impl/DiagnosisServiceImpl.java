@@ -2,6 +2,7 @@ package com.nbu.medicalrecords.service.impl;
 
 import com.nbu.medicalrecords.data.entity.Diagnosis;
 import com.nbu.medicalrecords.data.repository.DiagnosisRepository;
+import com.nbu.medicalrecords.exception.DiagnosisNotFoundException;
 import com.nbu.medicalrecords.service.DiagnosisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 
     @Override
     public Diagnosis getDiagnosisById(Long id) {
-        return diagnosisRepository.findById(id).orElseThrow(() -> new RuntimeException("Diagnosis not found"));
+        return diagnosisRepository.findById(id).orElseThrow(() -> new DiagnosisNotFoundException(id));
     }
 
     @Override

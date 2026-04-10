@@ -2,6 +2,7 @@ package com.nbu.medicalrecords.service.impl;
 
 import com.nbu.medicalrecords.data.entity.Appointment;
 import com.nbu.medicalrecords.data.repository.AppointmentRepository;
+import com.nbu.medicalrecords.exception.AppointmentNotFoundException;
 import com.nbu.medicalrecords.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public Appointment getAppointmentById(Long id) {
-        return appointmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Appointment not found"));
+        return appointmentRepository.findById(id).orElseThrow(() -> new AppointmentNotFoundException(id));
     }
 
     @Override
