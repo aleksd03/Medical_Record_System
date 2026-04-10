@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Пациенти по диагноза</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Пациенти по диагноза</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Име</th>
+        <th>Фамилия</th>
+        <th>ЕГН</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.firstName}"></td>
+        <td th:text="${patient.lastName}"></td>
+        <td th:text="${patient.egn}"></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/statistics}">Назад</a>
+
+</body>
+</html>

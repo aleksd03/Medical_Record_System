@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Най-честа диагноза</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Най-честа диагноза</h1>
+<p th:text="${diagnosis}"></p>
+<a th:href="@{/statistics}">Назад</a>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Брой пациенти по личен лекар</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Брой пациенти по личен лекар</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Личен лекар</th>
+        <th>Брой пациенти</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${data}">
+        <td th:text="${entry.key.firstName + ' ' + entry.key.lastName}"></td>
+        <td th:text="${entry.value}"></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/statistics}">Назад</a>
+
+</body>
+</html>

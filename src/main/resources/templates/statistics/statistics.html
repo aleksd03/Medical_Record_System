@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Справки</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Справки и статистика</h1>
+
+<ul>
+    <li><a th:href="@{/statistics/most-common-diagnosis}">Най-честа диагноза</a></li>
+    <li><a th:href="@{/statistics/total-price-uninsured}">Обща стойност платена от неосигурени пациенти</a></li>
+    <li><a th:href="@{/statistics/total-price-by-doctor}">Стойност по лекар за неосигурени пациенти</a></li>
+    <li><a th:href="@{/statistics/appointments-count-by-doctor}">Брой прегледи по лекар</a></li>
+    <li><a th:href="@{/statistics/patients-count-by-gp}">Брой пациенти по личен лекар</a></li>
+    <li><a th:href="@{/statistics/month-most-sick-leaves}">Месец с най-много болнични</a></li>
+    <li><a th:href="@{/statistics/doctors-most-sick-leaves}">Лекари с най-много болнични</a></li>
+</ul>
+
+</body>
+</html>

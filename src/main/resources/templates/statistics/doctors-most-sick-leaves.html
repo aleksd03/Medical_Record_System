@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Лекари с най-много болнични</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Лекари с най-много болнични</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Лекар</th>
+        <th>Специалност</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doctor : ${doctors}">
+        <td th:text="${doctor.firstName + ' ' + doctor.lastName}"></td>
+        <td th:text="${doctor.specialty}"></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/statistics}">Назад</a>
+
+</body>
+</html>

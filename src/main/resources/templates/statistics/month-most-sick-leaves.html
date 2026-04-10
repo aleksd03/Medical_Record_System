@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Месец с най-много болнични</title>
+</head>
+<body>
+
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<h1>Месец с най-много болнични</h1>
+<p th:text="${month}"></p>
+<a th:href="@{/statistics}">Назад</a>
+
+</body>
+</html>
