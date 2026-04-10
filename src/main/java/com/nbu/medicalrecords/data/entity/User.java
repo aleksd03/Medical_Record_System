@@ -28,4 +28,12 @@ public class User extends BaseEntity implements UserDetails {
     private boolean accountNonLocked = true;
     private boolean credentialsNonExpired = true;
     private boolean enabled = true;
+
+    @OneToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+
+    @OneToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 }

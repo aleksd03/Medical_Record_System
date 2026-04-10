@@ -1,12 +1,10 @@
 package com.nbu.medicalrecords.controller.api;
 
 import com.nbu.medicalrecords.config.ModelMapperConfig;
+import com.nbu.medicalrecords.data.entity.User;
 import com.nbu.medicalrecords.dto.AppointmentDto;
 import com.nbu.medicalrecords.dto.CreateAppointmentDto;
-import com.nbu.medicalrecords.service.AppointmentService;
-import com.nbu.medicalrecords.service.DoctorService;
-import com.nbu.medicalrecords.service.PatientService;
-import com.nbu.medicalrecords.service.DiagnosisService;
+import com.nbu.medicalrecords.service.*;
 import com.nbu.medicalrecords.data.entity.Appointment;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +20,8 @@ public class AppointmentApiController {
     private final DoctorService doctorService;
     private final PatientService patientService;
     private final DiagnosisService diagnosisService;
+    private final UserService userService;
+    private final StatisticsService statisticsService;
     private final ModelMapperConfig modelMapperConfig;
 
     @GetMapping
@@ -33,6 +33,17 @@ public class AppointmentApiController {
     public AppointmentDto getAppointmentById(@PathVariable Long id) {
         return modelMapperConfig.modelMapper()
                 .map(appointmentService.getAppointmentById(id), AppointmentDto.class);
+    }
+
+    @GetMapping("/my-appointments")
+    public List<AppointmentDto> getMyAppointments() {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser.getPatient() == null) {
+            throw new RuntimeException("You are not a patient!");
+        }
+        return modelMapperConfig.mapList(
+                statisticsService.getAppointmentHistoryForPatient(currentUser.getPatient().getId()),
+                AppointmentDto.class);
     }
 
     @PostMapping
@@ -50,21 +61,34 @@ public class AppointmentApiController {
     }
 
     @PutMapping("/{id}")
-    public AppointmentDto updateAppointment(@PathVariable Long id, @Valid @RequestBody CreateAppointmentDto dto) {
-        Appointment appointment = appointmentService.getAppointmentById(id);
-        appointment.setDate(dto.getDate());
-        appointment.setTreatment(dto.getTreatment());
-        appointment.setPrice(dto.getPrice());
-        appointment.setDoctor(doctorService.getDoctorById(dto.getDoctorId()));
-        appointment.setPatient(patientService.getPatientById(dto.getPatientId()));
-        appointment.setDiagnosis(diagnosisService.getDiagnosisById(dto.getDiagnosisId()));
+    public AppointmentDto updateAppointment(@PathVariable Long id, @RequestBody CreateAppointmentDto dto) {
+        User currentUser = userService.getCurrentUser();
+        Appointment existing = appointmentService.getAppointmentById(id);
 
-        return modelMapperConfig.modelMapper()
-                .map(appointmentService.updateAppointment(id, appointment), AppointmentDto.class);
+        if (currentUser.getDoctor() != null &&
+                !existing.getDoctor().getId().equals(currentUser.getDoctor().getId())) {
+            throw new RuntimeException("You can only edit your own appointments!");
+        }
+
+        existing.setDate(dto.getDate());
+        existing.setTreatment(dto.getTreatment());
+        existing.setPrice(dto.getPrice());
+        existing.setDoctor(doctorService.getDoctorById(dto.getDoctorId()));
+        existing.setPatient(patientService.getPatientById(dto.getPatientId()));
+        existing.setDiagnosis(diagnosisService.getDiagnosisById(dto.getDiagnosisId()));
+        return modelMapperConfig.modelMapper().map(appointmentService.updateAppointment(id, existing), AppointmentDto.class);
     }
 
     @DeleteMapping("/{id}")
     public void deleteAppointment(@PathVariable Long id) {
+        User currentUser = userService.getCurrentUser();
+        Appointment existing = appointmentService.getAppointmentById(id);
+
+        if (currentUser.getDoctor() != null &&
+                !existing.getDoctor().getId().equals(currentUser.getDoctor().getId())) {
+            throw new RuntimeException("You can only delete your own appointments!");
+        }
+
         appointmentService.deleteAppointment(id);
     }
 }

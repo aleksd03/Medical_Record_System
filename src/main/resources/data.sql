@@ -23,6 +23,9 @@ INSERT IGNORE INTO users_roles (user_id, role_id)
 SELECT u.id, r.id FROM users u, roles r
 WHERE u.username = 'patient' AND r.authority = 'PATIENT';
 
+UPDATE users SET doctor_id = (SELECT id FROM doctors WHERE identification_number = 'IK001') WHERE username = 'doctor';
+UPDATE users SET patient_id = (SELECT id FROM patients WHERE egn = '8503191234') WHERE username = 'patient';
+
 # admin123: $2a$10$CTJxaL1Jpq1VS1wlrAqXhOPyAKKPtoII2RmI/QiwYZmQlgCHJLfVm
 # doctor123: $2a$10$dsmEAEHYGZcS3RfOd.4qwOIw2G5NynR3kNWWpBGNheb5h31LG69NC
 # patient123: $2a$10$dnozTEToMmWM3R4IO.qkcO8JrhwFcUgMI42FAcLkOpL.OUWxaOqPC

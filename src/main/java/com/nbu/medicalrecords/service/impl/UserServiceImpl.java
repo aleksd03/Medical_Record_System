@@ -1,8 +1,10 @@
 package com.nbu.medicalrecords.service.impl;
 
+import com.nbu.medicalrecords.data.entity.User;
 import com.nbu.medicalrecords.data.repository.UserRepository;
 import com.nbu.medicalrecords.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -16,5 +18,13 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " not found"));
+    }
+
+    @Override
+    public User getCurrentUser() {
+        String username = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
+        return (User) loadUserByUsername(username);
     }
 }
