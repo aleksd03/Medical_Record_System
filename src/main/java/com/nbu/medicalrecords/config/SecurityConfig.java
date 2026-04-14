@@ -36,10 +36,21 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(auth -> auth
+        http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index").permitAll()
                         .requestMatchers("/api/appointments/my-appointments").hasAuthority("PATIENT")
+                        .requestMatchers(HttpMethod.POST, "/api/doctors/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/doctors/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/doctors/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.POST, "/api/patients/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/patients/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/patients/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.POST, "/api/diagnoses/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/diagnoses/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/diagnoses/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.POST, "/api/sick-leaves/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/sick-leaves/**").hasAnyAuthority("ADMIN", "DOCTOR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/sick-leaves/**").hasAnyAuthority("ADMIN", "DOCTOR")
                         .requestMatchers(HttpMethod.PUT, "/api/appointments/**").hasAnyAuthority("ADMIN", "DOCTOR")
                         .requestMatchers(HttpMethod.DELETE, "/api/appointments/**").hasAnyAuthority("ADMIN", "DOCTOR")
                         .requestMatchers("/api/**").hasAnyAuthority("ADMIN", "DOCTOR", "PATIENT")
