@@ -15,6 +15,29 @@ services:
       timeout: 5s
       retries: 5
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.1
+    container_name: medical-records-keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin123
+      KC_DB: mysql
+      KC_DB_URL: jdbc:mysql://mysql:3306/keycloak?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      KC_DB_USERNAME: root
+      KC_DB_PASSWORD: root123
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8080
+      KC_HOSTNAME_STRICT: "false"
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT_HTTPS: "false"
+
+    ports:
+      - "8080:8080"
+    command: start-dev
+    depends_on:
+      mysql:
+        condition: service_healthy
+
   app:
     build: .
     container_name: medical-records-app
@@ -28,6 +51,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    restart: on-failure
 
 volumes:
   mysql-data:
