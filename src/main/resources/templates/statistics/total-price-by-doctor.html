@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Стойност по лекар</title>
+    <title>Amount by Doctor</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Стойност по лекар за неосигурени пациенти</h1>
+<h1>Amount by Doctor for Uninsured Patients</h1>
 <table>
     <thead>
     <tr>
-        <th>Лекар</th>
-        <th>Сума</th>
+        <th>Doctor</th>
+        <th>Total</th>
     </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{/statistics}">Назад</a>
+<a th:href="@{/statistics}">Back</a>
 
 </body>
 </html>

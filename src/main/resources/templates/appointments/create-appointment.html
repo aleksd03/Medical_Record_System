@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Добави преглед</title>
+    <title>Add Appointment</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Добави преглед</h1>
+<h1>Add Appointment</h1>
 
 <form th:action="@{/appointments/create}" th:object="${appointment}" method="post">
     <div>
-        <label>Дата:</label>
+        <label>Date:</label>
         <input type="date" th:field="*{date}"/>
     </div>
     <div>
-        <label>Лекар:</label>
+        <label>Doctor:</label>
         <select th:field="*{doctorId}">
             <option th:each="doctor : ${doctors}"
                     th:value="${doctor.id}"
@@ -24,7 +24,7 @@
         </select>
     </div>
     <div>
-        <label>Пациент:</label>
+        <label>Patient:</label>
         <select th:field="*{patientId}">
             <option th:each="patient : ${patients}"
                     th:value="${patient.id}"
@@ -33,7 +33,7 @@
         </select>
     </div>
     <div>
-        <label>Диагноза:</label>
+        <label>Diagnosis:</label>
         <select th:field="*{diagnosisId}">
             <option th:each="diagnosis : ${diagnoses}"
                     th:value="${diagnosis.id}"
@@ -42,15 +42,15 @@
         </select>
     </div>
     <div>
-        <label>Лечение:</label>
+        <label>Treatment:</label>
         <input type="text" th:field="*{treatment}"/>
     </div>
     <div>
-        <label>Цена:</label>
+        <label>Price:</label>
         <input type="number" step="0.01" th:field="*{price}"/>
     </div>
-    <button type="submit">Запази</button>
-    <a th:href="@{/appointments}">Назад</a>
+    <button type="submit">Save</button>
+    <a th:href="@{/appointments}">Back</a>
 </form>
 
 </body>

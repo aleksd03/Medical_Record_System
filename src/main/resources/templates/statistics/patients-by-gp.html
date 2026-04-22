@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Пациенти по личен лекар</title>
+    <title>Patients by GP</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Пациенти по личен лекар</h1>
+<h1>Patients by General Practitioner</h1>
 <table>
     <thead>
     <tr>
-        <th>Ime</th>
-        <th>Фамилия</th>
-        <th>ЕГН</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>EGN</th>
     </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{/statistics}">Назад</a>
+<a th:href="@{/statistics}">Back</a>
 
 </body>
 </html>

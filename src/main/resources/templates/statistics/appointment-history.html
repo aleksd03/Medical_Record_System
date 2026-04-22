@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>История на прегледите</title>
+    <title>Appointment History</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>История на прегледите</h1>
+<h1>Appointment History</h1>
 <table>
     <thead>
     <tr>
-        <th>Дата</th>
-        <th>Лекар</th>
-        <th>Диагноза</th>
-        <th>Лечение</th>
-        <th>Цена</th>
+        <th>Date</th>
+        <th>Doctor</th>
+        <th>Diagnosis</th>
+        <th>Treatment</th>
+        <th>Price</th>
     </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{/statistics}">Назад</a>
+<a th:href="@{/statistics}">Back</a>
 
 </body>
 </html>

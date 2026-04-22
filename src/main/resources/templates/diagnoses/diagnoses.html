@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Диагнози</title>
+    <title>Diagnoses</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Диагнози</h1>
+<h1>Diagnoses</h1>
 
-<a th:href="@{/diagnoses/create}">Добави диагноза</a>
+<a th:href="@{/diagnoses/create}">Add Diagnosis</a>
 
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Име</th>
-        <th>Описание</th>
-        <th>Действия</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -26,8 +26,8 @@
         <td th:text="${diagnosis.name}"></td>
         <td th:text="${diagnosis.description}"></td>
         <td>
-            <a th:href="@{/diagnoses/edit/{id}(id=${diagnosis.id})}">Редактирай</a>
-            <a th:href="@{/diagnoses/delete/{id}(id=${diagnosis.id})}">Изтрий</a>
+            <a th:href="@{/diagnoses/edit/{id}(id=${diagnosis.id})}">Edit</a>
+            <a th:href="@{/diagnoses/delete/{id}(id=${diagnosis.id})}">Delete</a>
         </td>
     </tr>
     </tbody>

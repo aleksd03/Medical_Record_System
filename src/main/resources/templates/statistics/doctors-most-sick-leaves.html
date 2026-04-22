@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Лекари с най-много болнични</title>
+    <title>Doctors with Most Sick Leaves</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Лекари с най-много болнични</h1>
+<h1>Doctors with Most Sick Leaves</h1>
 <table>
     <thead>
     <tr>
-        <th>Лекар</th>
-        <th>Специалност</th>
+        <th>Doctor</th>
+        <th>Specialty</th>
     </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{/statistics}">Назад</a>
+<a th:href="@{/statistics}">Back</a>
 
 </body>
 </html>

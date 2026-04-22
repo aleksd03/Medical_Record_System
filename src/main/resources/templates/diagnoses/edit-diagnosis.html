@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Редактирай диагноза</title>
+    <title>Edit Diagnosis</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Редактирай диагноза</h1>
+<h1>Edit Diagnosis</h1>
 
 <form th:action="@{/diagnoses/edit/{id}(id=${diagnosis.id})}" th:object="${diagnosis}" method="post">
     <div>
-        <label>Име:</label>
+        <label>Name:</label>
         <input type="text" th:field="*{name}"/>
     </div>
     <div>
-        <label>Описание:</label>
+        <label>Description:</label>
         <input type="text" th:field="*{description}"/>
     </div>
-    <button type="submit">Запази</button>
-    <a th:href="@{/diagnoses}">Назад</a>
+    <button type="submit">Save</button>
+    <a th:href="@{/diagnoses}">Back</a>
 </form>
 
 </body>

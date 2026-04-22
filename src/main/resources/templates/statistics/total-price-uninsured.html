@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Обща стойност</title>
+    <title>Total Amount - Uninsured Patients</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Обща стойност платена от неосигурени пациенти</h1>
+<h1>Total Amount Paid by Uninsured Patients</h1>
 <p th:text="${total}"></p>
-<a th:href="@{/statistics}">Назад</a>
+<a th:href="@{/statistics}">Back</a>
 
 </body>
 </html>

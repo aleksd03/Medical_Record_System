@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Прегледи</title>
+    <title>Appointments</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Прегледи</h1>
+<h1>Appointments</h1>
 
-<a th:href="@{/appointments/create}">Добави преглед</a>
+<a th:href="@{/appointments/create}">Add Appointment</a>
 
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Дата</th>
-        <th>Лекар</th>
-        <th>Пациент</th>
-        <th>Диагноза</th>
-        <th>Лечение</th>
-        <th>Цена</th>
-        <th>Действия</th>
+        <th>Date</th>
+        <th>Doctor</th>
+        <th>Patient</th>
+        <th>Diagnosis</th>
+        <th>Treatment</th>
+        <th>Price</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -34,8 +34,8 @@
         <td th:text="${appointment.treatment}"></td>
         <td th:text="${appointment.price}"></td>
         <td>
-            <a th:href="@{/appointments/edit/{id}(id=${appointment.id})}">Редактирай</a>
-            <a th:href="@{/appointments/delete/{id}(id=${appointment.id})}">Изтрий</a>
+            <a th:href="@{/appointments/edit/{id}(id=${appointment.id})}">Edit</a>
+            <a th:href="@{/appointments/delete/{id}(id=${appointment.id})}">Delete</a>
         </td>
     </tr>
     </tbody>

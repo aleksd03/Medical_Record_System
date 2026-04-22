@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Справки</title>
+    <title>Statistics</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Справки и статистика</h1>
+<h1>Statistics & Reports</h1>
 
 <ul>
-    <li><a th:href="@{/statistics/most-common-diagnosis}">Най-честа диагноза</a></li>
-    <li><a th:href="@{/statistics/total-price-uninsured}">Обща стойност платена от неосигурени пациенти</a></li>
-    <li><a th:href="@{/statistics/total-price-by-doctor}">Стойност по лекар за неосигурени пациенти</a></li>
-    <li><a th:href="@{/statistics/appointments-count-by-doctor}">Брой прегледи по лекар</a></li>
-    <li><a th:href="@{/statistics/patients-count-by-gp}">Брой пациенти по личен лекар</a></li>
-    <li><a th:href="@{/statistics/month-most-sick-leaves}">Месец с най-много болнични</a></li>
-    <li><a th:href="@{/statistics/doctors-most-sick-leaves}">Лекари с най-много болнични</a></li>
+    <li><a th:href="@{/statistics/most-common-diagnosis}">Most Common Diagnosis</a></li>
+    <li><a th:href="@{/statistics/total-price-uninsured}">Total Amount Paid by Uninsured Patients</a></li>
+    <li><a th:href="@{/statistics/total-price-by-doctor}">Amount by Doctor for Uninsured Patients</a></li>
+    <li><a th:href="@{/statistics/appointments-count-by-doctor}">Appointment Count by Doctor</a></li>
+    <li><a th:href="@{/statistics/patients-count-by-gp}">Patient Count by GP</a></li>
+    <li><a th:href="@{/statistics/month-most-sick-leaves}">Month with Most Sick Leaves</a></li>
+    <li><a th:href="@{/statistics/doctors-most-sick-leaves}">Doctors with Most Sick Leaves</a></li>
 </ul>
 
 </body>

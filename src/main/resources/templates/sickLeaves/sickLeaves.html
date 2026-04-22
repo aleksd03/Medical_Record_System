@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Болнични листове</title>
+    <title>Sick Leaves</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Болнични листове</h1>
+<h1>Sick Leaves</h1>
 
-<a th:href="@{/sick-leaves/create}">Добави болничен лист</a>
+<a th:href="@{/sick-leaves/create}">Add Sick Leave</a>
 
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Начална дата</th>
-        <th>Брой дни</th>
-        <th>Преглед</th>
-        <th>Действия</th>
+        <th>Start Date</th>
+        <th>Number of Days</th>
+        <th>Appointment</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -28,8 +28,8 @@
         <td th:text="${sickLeave.numberOfDays}"></td>
         <td th:text="${sickLeave.appointment.id}"></td>
         <td>
-            <a th:href="@{/sick-leaves/edit/{id}(id=${sickLeave.id})}">Редактирай</a>
-            <a th:href="@{/sick-leaves/delete/{id}(id=${sickLeave.id})}">Изтрий</a>
+            <a th:href="@{/sick-leaves/edit/{id}(id=${sickLeave.id})}">Edit</a>
+            <a th:href="@{/sick-leaves/delete/{id}(id=${sickLeave.id})}">Delete</a>
         </td>
     </tr>
     </tbody>

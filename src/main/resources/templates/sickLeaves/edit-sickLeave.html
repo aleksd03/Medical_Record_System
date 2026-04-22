@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Редактирай болничен лист</title>
+    <title>Edit Sick Leave</title>
 </head>
 <body>
 
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1>Редактирай болничен лист</h1>
+<h1>Edit Sick Leave</h1>
 
 <form th:action="@{/sick-leaves/edit/{id}(id=${sickLeaveId})}" th:object="${sickLeave}" method="post">
     <div>
-        <label>Начална дата:</label>
+        <label>Start Date:</label>
         <input type="date" th:field="*{startDate}"/>
     </div>
     <div>
-        <label>Брой дни:</label>
+        <label>Number of Days:</label>
         <input type="number" th:field="*{numberOfDays}"/>
     </div>
     <div>
-        <label>Преглед:</label>
+        <label>Appointment:</label>
         <select th:field="*{appointmentId}">
             <option th:each="appointment : ${appointments}"
                     th:value="${appointment.id}"
@@ -27,8 +27,8 @@
             </option>
         </select>
     </div>
-    <button type="submit">Запази</button>
-    <a th:href="@{/sick-leaves}">Назад</a>
+    <button type="submit">Save</button>
+    <a th:href="@{/sick-leaves}">Back</a>
 </form>
 
 </body>
