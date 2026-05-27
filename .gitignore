@@ -39,3 +39,4 @@ out/
 ### Sensitive Data ###
 application-local.properties
 application-test-local.properties
+src/test/resources/application-test-local.properties
