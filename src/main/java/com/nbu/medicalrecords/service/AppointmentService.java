@@ -1,6 +1,7 @@
 package com.nbu.medicalrecords.service;
 
 import com.nbu.medicalrecords.data.entity.Appointment;
+import com.nbu.medicalrecords.data.entity.Doctor;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ public interface AppointmentService {
     Appointment createAppointment(Appointment appointment);
     Appointment updateAppointment(Long id, Appointment appointment);
     void deleteAppointment(Long id);
+    List<Appointment> getAppointmentsByDoctor(Doctor doctor);
 }

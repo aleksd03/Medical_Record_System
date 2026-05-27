@@ -53,6 +53,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index").permitAll()
                         .requestMatchers("/api/appointments/my-appointments").hasAuthority("PATIENT")
+                        .requestMatchers("/appointments/my-appointments").hasAuthority("PATIENT")
                         .requestMatchers(HttpMethod.POST, "/api/doctors/**").hasAnyAuthority("ADMIN", "DOCTOR")
                         .requestMatchers(HttpMethod.PUT, "/api/doctors/**").hasAnyAuthority("ADMIN", "DOCTOR")
                         .requestMatchers(HttpMethod.DELETE, "/api/doctors/**").hasAnyAuthority("ADMIN", "DOCTOR")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 <body>
 
 <nav th:fragment="navbar">
@@ -10,6 +10,9 @@
         <li><a th:href="@{/appointments}">Appointments</a></li>
         <li><a th:href="@{/sick-leaves}">Sick Leaves</a></li>
         <li><a th:href="@{/statistics}">Statistics</a></li>
+        <li sec:authorize="hasAuthority('PATIENT')">
+            <a th:href="@{/appointments/my-appointments}">My Appointments</a>
+        </li>
     </ul>
 </nav>
 

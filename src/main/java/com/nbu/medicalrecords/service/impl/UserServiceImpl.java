@@ -22,9 +22,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getCurrentUser() {
-        String username = SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getName();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String username;
+        if (principal instanceof org.springframework.security.oauth2.core.oidc.user.OidcUser) {
+            username = ((org.springframework.security.oauth2.core.oidc.user.OidcUser) principal).getPreferredUsername();
+        } else {
+            username = SecurityContextHolder.getContext().getAuthentication().getName();
+        }
+
         return (User) loadUserByUsername(username);
     }
 }

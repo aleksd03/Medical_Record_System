@@ -1,6 +1,7 @@
 package com.nbu.medicalrecords.service.impl;
 
 import com.nbu.medicalrecords.data.entity.Appointment;
+import com.nbu.medicalrecords.data.entity.Doctor;
 import com.nbu.medicalrecords.data.repository.AppointmentRepository;
 import com.nbu.medicalrecords.exception.AppointmentNotFoundException;
 import com.nbu.medicalrecords.service.AppointmentService;
@@ -22,6 +23,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public Appointment getAppointmentById(Long id) {
         return appointmentRepository.findById(id).orElseThrow(() -> new AppointmentNotFoundException(id));
+    }
+
+    @Override
+    public List<Appointment> getAppointmentsByDoctor(Doctor doctor) {
+        return appointmentRepository.findByDoctor(doctor);
     }
 
     @Override
