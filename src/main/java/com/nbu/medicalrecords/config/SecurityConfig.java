@@ -104,6 +104,11 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")
                         .permitAll()
                 )
+                .exceptionHandling(ex -> ex
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            response.sendRedirect("/");
+                        })
+                )
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }
