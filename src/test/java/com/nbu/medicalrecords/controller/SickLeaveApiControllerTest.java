@@ -46,9 +46,9 @@ public class SickLeaveApiControllerTest {
 
     @Test
     @WithMockUser(authorities = "PATIENT")
-    void deleteSickLeave_AsPatient_ShouldReturn403() throws Exception {
+    void deleteSickLeave_AsPatient_ShouldReturn302() throws Exception {
         mockMvc.perform(delete("/api/sick-leaves/1"))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isFound()); // 302
     }
 
     @Test

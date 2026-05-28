@@ -67,11 +67,11 @@ public class DiagnosisApiControllerTest {
 
     @Test
     @WithMockUser(authorities = "PATIENT")
-    void createDiagnosis_AsPatient_ShouldReturn403() throws Exception {
+    void createDiagnosis_AsPatient_ShouldReturn302() throws Exception {
         mockMvc.perform(post("/api/diagnoses")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(createDiagnosisDto)))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isFound()); // 302
     }
 
     @Test

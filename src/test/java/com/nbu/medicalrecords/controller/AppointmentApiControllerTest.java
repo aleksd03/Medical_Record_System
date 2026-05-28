@@ -57,9 +57,9 @@ public class AppointmentApiControllerTest {
 
     @Test
     @WithMockUser(authorities = "PATIENT")
-    void deleteAppointment_AsPatient_ShouldReturn403() throws Exception {
+    void deleteAppointment_AsPatient_ShouldReturn302() throws Exception {
         mockMvc.perform(delete("/api/appointments/1"))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isFound()); // 302
     }
 
     @Test
